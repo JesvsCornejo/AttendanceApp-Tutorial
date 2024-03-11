@@ -1,0 +1,96 @@
+\documentclass[10pt,twocolumn]{article}
+
+% use the oxycomps style file
+\usepackage{oxycomps}
+\usepackage{biblatex}
+
+% read references.bib for the bibtex data
+\addbibresource{references.bib}
+
+% usage: \fixme[comments describing issue]{text to be fixed}
+% define \fixme as not doing anything special
+\newcommand{\fixme}[2][]{#2}
+% overwrite it so it shows up as red
+\renewcommand{\fixme}[2][]{\textcolor{red}{#2}}
+% overwrite it again so related text shows as footnotes
+%\renewcommand{\fixme}[2][]{\textcolor{red}{#2\footnote{#1}}}
+
+
+% include metadata in the generated pdf file
+\pdfinfo{
+    /Title (Attendance Manager App)
+    /Author (Jesus Cornejo)
+}
+
+% set the title and author information
+\title{Attendance Manager App Tutorial:\\
+Guide for Future Project}
+\author{Jesus Cornejo}
+\affiliation{Occidental College}
+\email{cornejoj@oxy.edu}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\subsection{Why this tutorial?}
+For my computer science project, I am aiming to develop a Campus Event app for the campus community. Users will be able to view events happening on campus listed through the app. The app's goal is to promote student engagement on campus by providing easy access to event information and enabling users to express interest in attending events.
+The Attendance Management app \cite{Youtube}, which tracks student attendance in a MySQL database, provided a solid foundation for the Campus Event app as similar classes and activities are needed for its implementation. The tutorial provided insightful knowledge on creating an interactive app and connecting it to a database. Although installing unfamiliar software like XAMPP to run MySQL was challenging, configuring the files and completing the rest of the tutorial process was straightforward. 
+
+
+\section{Methods}
+
+\subsection{Tutorial Overview}
+The Attendance Management app is built in Java using Android Studio. The application makes use of a MySQL database through \textit{phpadmin} from a software called \textit{XAMPP}.
+\begin{figure}[h]
+\includegraphics[width = 10cm]{screenshots/phpAdmin.png}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width = 10cm]{screenshots/MainActivity.png}
+\centering
+\end{figure} 
+
+\subsection{Classes and How They Work:}
+
+\begin{figure}[h]
+\includegraphics[width = 10cm]{screenshots/Database.png}
+\centering
+\end{figure} 
+1. Database.java: This class handles database operations such as retrieving, adding, updating, and deleting classes, students, and sessions from the database. It interacts with the MySQL database using JDBC (Java Database Connectivity).\\
+\begin{figure}[h]
+\includegraphics[width = 10cm]{screenshots/Class.png}
+\centering
+\end{figure} \\
+2. Class.java: Represents a class entity with properties like ID and className. Instances of this class are used to store class information.\\
+3. Student.java: Represents a student entity with properties like ID, firstName, lastName, email, and tel. Instances of this class are used to store student information.\\
+4. Session.java: Represents a session entity with properties like ID, students, subject, and date. Instances of this class are used to store session information, including the students attending the session.\\
+5. SessionEditor.java: This activity allows users to create or edit sessions. Users can set the subject and date for a session, and they can also add or remove students from the session.\\
+6. StudentEditor.java: This activity allows users to create or edit student information. Users can set the first name, last name, email, and telephone number for a student.\\
+\begin{figure}[ht]
+\includegraphics[width = 10cm]{screenshots/ClassEditor.png}
+\centering
+\end{figure}
+7. ClassEditor.java: This activity allows users to create or edit classes. Users can set the class name and add or remove students from the class.\\
+8. ShowSessions.java: This activity displays a list of sessions for a specific class. Users can create a new session or click on a session to edit its details.\\
+9. ViewSession.java: This activity displays the details of a specific session, including the list of present and absent students. It retrieves session information from the database and separates students into present and absent categories.\\
+10. EditSessionStudents.java: This activity allows users to edit the list of students attending a session. Users can check or uncheck students to mark them as present or absent, respectively.\\
+These classes work together to create a comprehensive attendance management system. The Database class serves as the central hub for database interactions. It utilizes JDBC (Java Database Connectivity) [2] to establish connections with the MySQL database. Through this class, users on the app can do operations like retrieving, adding, updating, and deleting data entries like classes, students, and sessions.
+\\Furthermore, the classes \textbf{'Class.java', 'Student.java', and 'Sessions.java'}
+are meant for entity management. The 'Class.java' class represents a class entity, meaning that instances of this class holds data about different classes like ID and class name. Similarly, the 'Student.java' class represents a student, with its instances containing information such as ID, first/last name, email, and phone number. Lastly, 'Session.java' is meant to represent a class/school session (could be a lecture, field trip, event, etc.) by saving the date, name of the subject, ID, and a list of attending students. The other classes and activities provide user interfaces for creating, editing, and managing sessions, students, and classes.
+
+\section{Metrics and Results}
+The goal of the app was to create a database of student classes and connect it to the attendance manager app in order to make changes to the database. Since the application can create and delete new instances of students and classes in the database, the goal of the app was achieved. \begin{figure}[ht]
+\includegraphics[width = 10cm]{screenshots/StudentEditor.png}
+\centering
+\end{figure} \\
+In order to create an app that fosters student engagement on campus, it is important to know how many students are attending events. With the attendance manager app, users can take attendance through a student-classes database. One desired activity for the event app is to see how many students are interested in attending an event, helping both event planners and students prepare for the attendance.
+
+\section{Reflection}
+The process of following this tutorial was not too difficult. The tutorial I found at YouTube channel \textit{Tech with Bob}'s was straightforward, but there are a few issues for my project moving forward. The process of setting up the database through MySQL was not covered in the tutorial I followed, so more knowledge will be required to setup the events database. I am also a bit worried about the other activities and functions that I will need to develop on my own for my app to be singular to the school. I do however enjoy this topic and have found a bit of passion in trying to create working apps.
+
+\printbibliography
+
+\end{document}
